@@ -23,13 +23,8 @@ export default class LoginView extends Component {
         super(props);
     }
 
-    shouldComponentUpdate(nextProps, nextState){
-        console.log('LoginView shouldComponentUpdate');
-    }
-
-
     render() {
-        const {username, password, changeUsername, changePassword,toLoginIn } = this.props;
+        const {username, password, changeUsername, changePassword, toLoginIn } = this.props;
         console.log('username = ' + username);
         console.log('password = ' + password);
         console.log(this);
@@ -46,7 +41,6 @@ export default class LoginView extends Component {
                     <EditView  name='输入用户名/注册手机号'
                                value={username}
                                onChangeText={(text) => {
-                                   this.props.username = text;
                                    changeUsername(text)
                                }}/>
                     <EditView name='输入密码'

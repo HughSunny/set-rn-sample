@@ -1,6 +1,6 @@
 import axios from 'axios'
 import qs from 'qs';
-axios.defaults.baseURL = 'http://192.168.2.102:8080';
+axios.defaults.baseURL = 'http://192.168.21.114:8080';
 //配置允许跨域携带cookie
 axios.defaults.withCredentials = true;
 axios.defaults.timeout = 30000;

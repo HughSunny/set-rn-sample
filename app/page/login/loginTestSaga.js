@@ -5,8 +5,12 @@ import * as loginActionTypes from './actionTypes'
 import http from "../../util/AxiosHttp";
 
 export function* login (url, params) {
-
-    return yield http.get(url, params)
+    try {
+        return yield http.get(url, params);
+    } catch (error) {
+        console.log(error)
+    }
+    return null;
 }
 
 export function* loginRequest() {
@@ -17,7 +21,20 @@ export function* loginRequest() {
             "password":req.password
         }
         let res = yield call(login, '/api/login', loginData);
-        console.log(res);
-        yield put({type:loginActionTypes.LOGIN_SUCCESS, data:res});
+
+        if (res == null) {
+            yield put({type:loginActionTypes.LOGIN_FAILD, data:"网路错误"});
+        } else {
+            var type = typeof(res);
+            console.log("loginRequest res type : " + type);
+            console.log("loginRequest res : " + res.toString());
+            // if (type == 'object') {
+            //     yield put({type:loginActionTypes.LOGIN_FAILD, data:res.toString()})
+            // }else [
+            //     yield put({type:loginActionTypes.LOGIN_SUCCESS, data:res})
+            // ]
+            yield put({type:loginActionTypes.LOGIN_SUCCESS, data:JSON.stringify(res)})
+        }
+
     }
 }

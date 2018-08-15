@@ -14,10 +14,10 @@ import {
 } from 'react-native';
 //导入stack导航组件
 import { StackNavigator } from 'react-navigation';
-import EditView from '../ui/EditView';
-import LoginButton from './login/view/LoginButton';
-import LoginSuccess from './LoginSuccess';
-import NetUtil from '../util/NetUtil';
+import EditView from '../../ui/EditView';
+import LoginButton from '../login/view/LoginButton';
+import LoginSuccess from '../LoginSuccess';
+import NetUtil from '../../util/NetUtil';
 
 const {height,width} = Dimensions.get('window');
 
@@ -69,7 +69,7 @@ class LoginActivity extends Component {
                 <View   style={{flexDirection: 'row', height:100, marginTop:1,
                     justifyContent: 'center',
                     alignItems: 'flex-start',}}>
-                    <Image source={require('../img/icon_play.png')}/>
+                    <Image source={require('../../img/icon_play.png')}/>
                 </View>
                 <View style={{marginTop:80}}>
                     {/*<EditView  name='输入用户名/注册手机号'*/}

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {View,Text} from 'react-native'
 import {connect} from 'react-redux';
-import LoginView from './view/login';
+import LoginView from './view/LoginView';
 import * as actionTypes from './actionTypes';
 import {toLogin} from "./actions";
 // import {bindActionCreators} from 'redux';
@@ -13,6 +13,17 @@ import {
 class Login extends React.Component{
     constructor(props) {
         super(props);
+        this.changeUsername  = this.changeUsername.bind(this);
+        this.changePassword  = this.changePassword.bind(this);
+    }
+
+    componentDidMount() {
+        // this.setState({
+        //     username:'admin',
+        //     password:'admin'
+        // })
+
+        // this.props.changeUsername("admin");
     }
 
     //标题栏
@@ -20,45 +31,49 @@ class Login extends React.Component{
         header:null
     };
 
+    changeUsername(newText) {
+        this.setState({
+            password:newText
+        });
+        this.props.changeUsername(newText);
+    }
+
+    changePassword(newText) {
+        this.setState({
+            username:newText
+        });
+        this.props.changePassword(newText);
+    }
+
     render() {
-        const {username, password, userinfo, toLoginIn, changeUsername, changePassword} = this.props;
+        const {username, password, userinfo, changeUsername, changePassword, toLoginIn} = this.props;
+        // var type = 'string';
+        // type = typeof(userinfo);
         return (<View style={{
             flex: 1,
             padding: 30,
             backgroundColor: '#ffffff'
         }}>
-            <Text style={{
-                color: 'black', padding: 5, fontSize: 18
-            }}>{userinfo}</Text>
+            <Text
+                style={{
+                    color: 'black', padding: 5, fontSize: 18
+                }}
+                numberOfLines={1}>{userinfo}</Text>
             <LoginView toLoginIn={toLoginIn} username={username} password={password}
                        changeUsername={changeUsername} changePassword={changePassword}/>
         </View>);
-        // return (<LoginView toLoginIn={toLoginIn} username={username} password={password}
-        //                    changeUsername={changeUsername} changePassword={changePassword}/>);
     }
 
     shouldComponentUpdate(nextProps, nextState){
         console.log("shouldComponentUpdate");
+        return true;
         //  const {userinfo} = nextProps;
         //     if (userinfo != null ) {
         //         this.props.navigation('LoginSuccess');
         //     }
     }
-
 }
 
-Login.defaultProps={
-    loading:false,
-    username:"admin",
-    password:"admin",
-    userinfo:"123"
-};
-Login.propTypes = {
-    loading:PropTypes.bool,
-    username:PropTypes.string,
-    password:PropTypes.string,
-    userinfo:PropTypes.string
-};
 
 const mapStateToDispatch=(dispatch, ownProps)=>{
     return {
@@ -80,17 +95,16 @@ const mapStateToDispatch=(dispatch, ownProps)=>{
     }
 }
 const mapStateToProps=(state)=>{
-
     const loginData = state.login;
     // if (!loginData.res) {
     //     this.props.navigation('LoginSuccess');
     // }
-    console.log("mapStateToProps" + state);
+    console.log("mapStateToProps" + loginData);
     return {
-        loading:state.loading,
-        username:state.username,
-        password:state.password,
-        userinfo:state.userinfo
+        loading:loginData.loading,
+        username:loginData.username,
+        password:loginData.password,
+        userinfo:loginData.userinfo
     };
 }
 export default connect(mapStateToProps,mapStateToDispatch)(Login);

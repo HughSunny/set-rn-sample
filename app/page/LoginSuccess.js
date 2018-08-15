@@ -7,6 +7,9 @@ import {
     Text
 } from 'react-native';
 export default class LoginSuccess extends React.Component {
+    static navigationOptions = ({navigation, screenProps}) => ({
+        headerTitle: null,
+    });
     constructor(props){
         super(props);
         this.state = {};

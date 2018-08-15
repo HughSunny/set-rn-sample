@@ -15,19 +15,6 @@ export default class EditView extends Component {
         this.state = {text: ''};
     }
 
-    setValue(textStr){
-        // this.setState({text:textStr});
-        this.setState((state) => {
-            for (var aName in state) {
-                console.log(aName)
-                console.log(state[aName])
-            }
-            return {
-                text:textStr,
-            }
-        }, this.props.onChangeText)
-    }
-
     render() {
         return (
             <View style={LoginStyles.TextInputView}>
@@ -38,7 +25,7 @@ export default class EditView extends Component {
                            autoCapitalize="none"
                            onChangeText={
                                (text) => {
-                                   this.setState({text});
+                                   this.setState({text:text});
                                    this.props.onChangeText(text);
                                }
                            }

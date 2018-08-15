@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import { Dimensions, Animated } from 'react-native';
-import store from 'react-native-simple-store';
+import { Dimensions, Animated, AsyncStorage } from 'react-native';
+import Store from 'react-native-simple-store';
 import SplashScreen from 'react-native-splash-screen';
 import NavigationUtil from '../util/NavigationUtil';
-
+import DeviceStorage from '../util/DeviceStorage';
 
 const maxHeight = Dimensions.get('window').height;
 const maxWidth = Dimensions.get('window').width;
@@ -32,6 +32,7 @@ export default class Splash extends Component {
     }
 
     componentDidMount() {
+
         const { navigate } = this.props.navigation;
         Animated.timing(this.state.bounceValue, {
             toValue: 1.2,
@@ -39,17 +40,37 @@ export default class Splash extends Component {
         }).start();
         SplashScreen.hide();
         this.timer = setTimeout(() => {
-            // store.get('isInit').then((isInit) => {
-            //     if (!isInit) {
-            //         // navigate('Category', { isFirst: true });
-            //     } else {
-            //         // NavigationUtil.reset(this.props.navigation, 'Home');
-            //     }
-            //     navigate('Login', { isFirst: true });
-            // });
+            console.log("get Init start");
+            console.log("Test JSON.stringify " + JSON.stringify(false));
+            console.log("Test JSON.stringify " + JSON.stringify(1));
+            var initd = DeviceStorage.get('isInit').then((inits) => {
+                    console.log("isInit inits= " + inits);
+                    if (!inits) {
+                        NavigationUtil.reset(this.props.navigation, 'Welcome');
+                    } else {
+                        NavigationUtil.reset(this.props.navigation, 'Login');
+                        //navigate('Login', { isFirst: true });
+                    }
+                }
+            );
+            console.log("isInit = " + initd);
 
-            navigate('Login', { isFirst: true });
-        }, 1000);
+
+            // Store.get('isInit').then(isInit => {
+            //     console.log("isInit = " + isInit);
+            //     if (!isInit) {
+            //         NavigationUtil.reset(this.props.navigation, 'Welcome');
+            //     } else {
+            //         NavigationUtil.reset(this.props.navigation, 'Login');
+            //         //navigate('Login', { isFirst: true });
+            //     }
+            // }).catch(error => {
+            //     console.log(error)
+            //     NavigationUtil.reset(this.props.navigation, 'Welcome');
+            // });
+            //navigate('Welcome', { isFirst: true });
+            //navigate('LearnFlex', { isFirst: true });
+        }, 2000);
     }
 
     componentWillUnmount() {

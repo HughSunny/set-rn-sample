@@ -6,7 +6,7 @@
 'use strict';
 import React, { Component } from 'react';
 import {Navigator} from 'react-native-deprecated-custom-components';
-import TestMain from './page/TestMain';
+import TestMain from './page/test/TestMain';
 //老版本的Navigator
 export default class NavigatorEntry extends Component {
     constructor(props) {

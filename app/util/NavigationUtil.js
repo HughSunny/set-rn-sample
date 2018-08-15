@@ -15,8 +15,9 @@
  * limitations under the License.
  *
  */
-import { NavigationActions } from 'react-navigation';
-
+import { NavigationActions, StackNavigator} from 'react-navigation';
+//重新设置navigation栈
+//Reset方法会清除原来的路由记录，添加上新设置的路由信息, 可以指定多个action，index是指定默认显示的那个路由页面, 注意不要越界了
 const reset = (navigation, routeName) => {
     const resetAction = NavigationActions.reset({
         index: 0,
@@ -24,6 +25,21 @@ const reset = (navigation, routeName) => {
     });
     navigation.dispatch(resetAction);
 };
+
+// StackNavigator({
+//     //Home界面route
+//     Home:{
+//         //require  screen就是一个react的组件(component)，用来展示的那个界面
+//         screen:HomeScreen,
+//         //optional   当深层次关联或者在web app中使用React Navigation,使用路径
+//         path:'people/:username',
+//         //optional Override navigationOptions方法，对navigator做一些配置
+//         navigationOptions:{
+//             //设置个标题
+//             title:({state}) => `${state.params.username}'s Profile'`
+//         },
+//     }}
+// );
 
 export default {
     reset
