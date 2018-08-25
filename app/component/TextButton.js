@@ -4,10 +4,9 @@
 'use strict';
 
 import React, {Component} from 'react';
-import { PropTypes} from 'prop-types';
 import {Text, View, StyleSheet, Platform, TouchableOpacity} from 'react-native';
 import px2dp from '../util/px2dp';
-
+import PropTypes from 'prop-types';
 export default class TextButton extends Component{
     static propTypes = {
         text: PropTypes.string.isRequired,
@@ -17,7 +16,7 @@ export default class TextButton extends Component{
     };
 
     static defaultProps = {
-        color: 'black',
+        color: 'white',
         fontSize: px2dp(12)
     };
 

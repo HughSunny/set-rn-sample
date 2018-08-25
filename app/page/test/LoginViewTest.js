@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 //导入stack导航组件
 import { StackNavigator } from 'react-navigation';
-import EditView from '../../ui/EditView';
+import EditView from '../../component/EditView';
 import LoginButton from '../login/view/LoginButton';
 import LoginSuccess from '../LoginSuccess';
 import NetUtil from '../../util/NetUtil';

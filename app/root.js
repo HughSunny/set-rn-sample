@@ -11,7 +11,11 @@ store.runSaga(rootSaga);
 
 const Root = () => (
     <Provider store={store}>
-        <App />
+        <App  onNavigationStateChange={(prevState, currentState) => {
+            // 只要切换tab,push,pop,这里一定走
+            console.log (prevState);
+            console.log (currentState);
+        }}/>
     </Provider>
 );
 

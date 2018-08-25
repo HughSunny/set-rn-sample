@@ -7,7 +7,7 @@ import {
     Image, AsyncStorage,
 } from 'react-native';
 
-import EditView from '../../../ui/EditView';
+import EditView from '../../../component/EditView';
 import LoginButton from './LoginButton';
 
 /**

@@ -10,8 +10,8 @@ import {
     AsyncStorage
 } from 'react-native';
 
-import Button from '../../ui/Button';
-import TextButton from '../../ui/TextButton';
+import Button from '../../component/Button';
+import TextButton from '../../component/TextButton';
 import px2dp from '../../util/px2dp';
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' +

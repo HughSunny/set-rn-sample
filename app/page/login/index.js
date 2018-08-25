@@ -15,6 +15,7 @@ class Login extends React.Component{
         super(props);
         this.changeUsername  = this.changeUsername.bind(this);
         this.changePassword  = this.changePassword.bind(this);
+        this.toLoginIn = this.toLoginIn.bind(this);
     }
 
     componentDidMount() {
@@ -45,6 +46,12 @@ class Login extends React.Component{
         this.props.changePassword(newText);
     }
 
+    toLoginIn(username,password){
+        const navigation  = this.props.navigation;
+        navigation.navigate('Home',{});
+    }
+
+
     render() {
         const {username, password, userinfo, changeUsername, changePassword, toLoginIn} = this.props;
         // var type = 'string';
@@ -59,7 +66,7 @@ class Login extends React.Component{
                     color: 'black', padding: 5, fontSize: 18
                 }}
                 numberOfLines={1}>{userinfo}</Text>
-            <LoginView toLoginIn={toLoginIn} username={username} password={password}
+            <LoginView toLoginIn={this.toLoginIn} username={username} password={password}
                        changeUsername={changeUsername} changePassword={changePassword}/>
         </View>);
     }
