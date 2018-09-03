@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { AppRegistry, Platform,Text,TextInput} from 'react-native';
-import Root from "./app/SagaRoot";
 import AddCustomProps from './app/utils/AddCustomProps'
 import DvaRoot from "./app/DvaRoot";
+import Root from "./app/SagaRoot";
 export default class WebStormProject extends Component {
     constructor (props) {
         super(props);
-        global.isDva = false;
+        global.isDva = true;
     }
     render() {
         if (global.isDva) {

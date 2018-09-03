@@ -10,11 +10,12 @@ import {
 import px2dp from '../../utils/px2dp';
 import theme from '../../resourses/theme';
 import ScrollableTabView, {ScrollableTabBar, DefaultTabBar} from 'react-native-scrollable-tab-view';
-//import SimpleTabBar from '../../components/SimpleTabBar';
+import {connect} from 'react-redux';
 
 /**
  * Created by Hugh on 2018/8/16
  */
+@connect()
 export default class homepage1 extends Component {
 
     constructor(props) {

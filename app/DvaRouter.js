@@ -3,7 +3,7 @@ import {
     BackHandler
 } from "react-native";
 import {connect} from 'react-redux';
-import Login from "./routes/login/sagaIndex";
+import Login from "./routes/login/dvaIndex";
 import HomeBottomTab from './routes/home/routes'
 import LoginSuccess from "./routes/LoginSuccess";
 import { StackNavigator, TabNavigator, addNavigationHelpers} from 'react-navigation';

@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import {View,Text} from 'react-native'
 import {connect} from 'react-redux';
 import LoginView from './view/LoginView';
-import * as actionTypes from '../../saga_module/actions/LoginActionTypes';
-import {toLogin} from "../../saga_module/actions/LoginAction";
 import {
     StyleSheet,
     AsyncStorage
 } from "react-native";
+@connect()
 export default class DvaLogin extends React.Component{
     constructor(props) {
         super(props);

@@ -7,10 +7,11 @@ import {
     RefreshControl,
     ScrollView,
 } from 'react-native';
-
+import {connect} from 'react-redux';
 /**
  * Created by Hugh on 2018/8/16
  */
+@connect()
 export default class homepage2 extends Component {
 
     constructor(props) {

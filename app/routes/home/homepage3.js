@@ -17,6 +17,8 @@ import TextButton from '../../components/TextButton'
 import PropTypes from 'prop-types'
 import ToastUtil from '../../utils/ToastUtil'
 import Icon from 'react-native-vector-icons/Ionicons';
+
+import {connect} from 'react-redux';
 const TouchArea = (props) => {
     if(Platform.OS === 'android') {
         return <TouchableNativeFeedback
@@ -34,6 +36,7 @@ const TouchArea = (props) => {
 /**
  * Created by Hugh on 2018/8/16
  */
+@connect()
 export default class homepage3 extends Component {
     static navigationOptions = ({navigation, screenProps}) => ({
         // headerTitle:'homepage3',

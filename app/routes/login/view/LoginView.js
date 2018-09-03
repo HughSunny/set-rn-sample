@@ -38,7 +38,8 @@ export default class LoginView extends Component {
                 </View>
                 <View style={{marginTop:80}}>
 
-                    <EditView  name='输入用户名/注册手机号'
+                    <EditView
+                        name='输入用户名/注册手机号'
                                value={username}
                                onChangeText={(text) => {
                                    changeUsername(text)

@@ -8,6 +8,7 @@ import {
     Button,
     AsyncStorage
 } from 'react-native';
+import {connect} from 'react-redux'
 import Swiper from 'react-native-swiper';
 import {NavigationActions, reset} from "../utils/NavigationUtil";
 import Store from "react-native-simple-store";
@@ -15,6 +16,8 @@ import DeviceStorage from '../utils/DeviceStorage';
 
 
 const { width, height } = Dimensions.get('window');//获取手机的宽和高
+
+@connect()
 export default class Welcome extends Component {
     static navigationOptions = {
         header: null

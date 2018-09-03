@@ -7,13 +7,13 @@ import {
 import {
     Dimensions,
 } from 'react-native'
-import color from './color'  //颜色样式
+import color from './color'
 import Icon from 'react-native-vector-icons/Ionicons';
 import page1 from './homepage1'
 import page2 from './homepage2'
 import page3 from './homepage3'
 
-export default HomeBottomTab = TabNavigator({
+const HomeBottomTab = TabNavigator({
         Page1: {
             screen: page1,
             navigationOptions: {
@@ -101,4 +101,14 @@ export default HomeBottomTab = TabNavigator({
 
 });
 
+HomeBottomTab.navigationOptions = ({ navigation }) => {
+  const { routeName } = navigation.state.routes[navigation.state.index]
+
+  return {
+    headerTitle: routeName,
+  }
+}
+
+
+export default HomeBottomTab;
 
