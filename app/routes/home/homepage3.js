@@ -40,8 +40,15 @@ const TouchArea = (props) => {
 export default class homepage3 extends Component {
     static navigationOptions = ({navigation, screenProps}) => ({
         // headerTitle:'homepage3',
-        headerTitle: navigation.state.params?navigation.state.params.title:'homepage3',
-
+      headerTitle: navigation.state.params?navigation.state.params.title:'homepage3',
+      tabBarLabel: '我的',
+      tabBarIcon: ({tintColor, focused}) => (
+          <Icon
+              name={focused ? 'ios-person' : 'ios-person-outline'}
+              size={26}
+              style={{color: tintColor}}
+          />
+      ),
     });
 
     constructor(props) {

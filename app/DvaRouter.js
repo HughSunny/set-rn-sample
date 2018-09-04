@@ -16,7 +16,7 @@ import {
 import Splash from './routes/Splash';
 import Welcome from "./routes/Welcome";
 import {NavigationActions} from "./utils/NavigationUtil";
-import HomePage from "./routes/home/index";
+import HomePage from "./routes/home/routes";
 
 const AppNavigation = createStackNavigator(
     {
@@ -35,7 +35,9 @@ const AppNavigation = createStackNavigator(
       },
       Home: {
         screen: HomePage,
-
+        navigationOptions: {
+          headerLeft:null
+        }
       },
       LoginSuccess: {screen: LoginSuccess},//登录成功
       // Home: {
@@ -54,7 +56,8 @@ const AppNavigation = createStackNavigator(
         },
         headerTitleStyle: {
           color: '#fff',
-          fontSize: 20
+          fontSize: 20,
+          alignSelf:'center'
         },
         headerTintColor: '#fff'
       }

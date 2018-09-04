@@ -33,7 +33,7 @@ export default class Welcome extends Component {
     componentDidMount(){
         this.timer=setTimeout(()=>{
             this._handleBack();
-        },7000);//7秒后进入登录
+        },10000);//7秒后进入登录
     }
 
     //卸载计时器

@@ -5,6 +5,7 @@ import {Header,Body,Title,Container, Content} from 'native-base'
 import HomeBottomTab from "./routes";
 import {connect} from 'react-redux'
 
+//虚拟主页
 @connect()
 export default class HomePage extends React.Component {
 
@@ -12,20 +13,21 @@ export default class HomePage extends React.Component {
     super(props);
     this.setTitle = this.setTitle.bind(this);
     this.state = {
-      headerTitle:''
+      title:''
     }
   }
   static navigationOptions = ({navigation, screenProps}) => ({
     headerLeft: null,
-    //header:null
+    //header:null,
   });
 
   render() {
-    console.log("title :" + this.state.headerTitle);
-    return  <View style={styles.container}>
+    console.log("title :" + this.state.title);
+    return
+    <View style={styles.container}>
       <Header style={styles.header}>
         <Body>
-          <Title>{this.state.headerTitle}</Title>
+          <Title>{this.state.title}</Title>
         </Body>
       </Header>
       <HomeBottomTab  setTitle={this.setTitle} style={styles.content} navigation = {this.props.navigation} />
@@ -34,7 +36,7 @@ export default class HomePage extends React.Component {
   setTitle = (title) =>  {
     console.log("setTitle  " );
     this.setState({
-      headerTitle:title
+      title:title
     });
   }
 }
