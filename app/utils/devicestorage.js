@@ -17,14 +17,18 @@ class DeviceStorage {
   //
   // }
 
-  static async get(key, defaultValue) {
-    return
-    AsyncStorage.getItem(key).then((value) => {
-      console.log("DeviceStorage getItem : value : " + value);
-      const jsonValue = JSON.parse(value);
-      return jsonValue;
+  static get(key, defaultValue) {
+    return AsyncStorage.getItem(key).then((value) => {
+      if (value !== null) {
+        const jsonValue = JSON.parse(value);
+        console.log("DS getItem : get  jsonValue : " + jsonValue);
+      } else {
+        console.log("DS getItem : get value  == null ");
+      }
+      var res = (value !== null ? JSON.parse(value) : defaultValue);
+      return res;
     }).catch(error => {
-      console.log("DeviceStorage getItem : error : " + error.message);
+      console.log("DS getItem : error : " + error.message);
     });
   }
 

@@ -9,6 +9,9 @@ import LoginSuccess from "../routes/LoginSuccess";
 import {
     BackHandler
 } from "react-native";
+
+//传统的navigation使用方法
+
 const App = StackNavigator(
     {
         Splash: {

@@ -17,8 +17,8 @@ export default class EditView extends Component {
 
     render() {
         return (
-            <View style={LoginStyles.TextInputView}>
-                <TextInput style={LoginStyles.TextInput}
+            <View style={styles.TextInputView}>
+                <TextInput style={styles.TextInput}
                            underlineColorAndroid='transparent'
                            placeholder={this.props.name}
                            defaultValue={this.props.value}
@@ -36,7 +36,7 @@ export default class EditView extends Component {
 }
 
 
-const LoginStyles = StyleSheet.create({
+const styles = StyleSheet.create({
     TextInputView: {
         marginTop: 10,
         height:50,

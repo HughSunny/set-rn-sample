@@ -3,7 +3,7 @@ import {Dimensions, Animated, AsyncStorage} from 'react-native';
 import Store from 'react-native-simple-store';
 import SplashScreen from 'react-native-splash-screen';
 import {reset, NavigationActions} from '../utils/NavigationUtil';
-import DeviceStorage from '../utils/DeviceStorage';
+import DeviceStorage from '../utils/devicestorage';
 import {connect} from 'react-redux';
 
 import {
@@ -41,27 +41,55 @@ export default class Splash extends Component {
     SplashScreen.hide();
     this.timer = setTimeout(() => {
       console.log("get Init start");
-      var initd = DeviceStorage.get('isInit').then((inits) => {
-            console.log("isInit inits= " + inits);
-            if (global.isDva) {
-              if (!inits) {
-                this.props.dispatch(NavigationActions.init({routeName: 'Welcome'}));
-              } else {
-                this.props.dispatch(NavigationActions.init({routeName: 'Login'}));
-              }
-            } else {
-              if (!inits) {
-                reset(this.props.navigation, 'Welcome');
-              } else {
-                reset(this.props.navigation, 'Login');
-                //navigate('Login', { navigation: navigate });
-              }
-            }
+      // var initd = DeviceStorage.get('isInit').then((inits) => {
+      //       console.log("isInit inits= " + inits);
+      //       if (global.isDva) {
+      //         if (!inits) {
+      //           // reset(this.props.navigation, 'Welcome');
+      //           this.props.dispatch(NavigationActions.navigate({routeName: 'Welcome'}));
+      //           // this.props.dispatch(NavigationActions.init());
+      //         } else {
+      //           //reset(this.props.navigation, 'Login');
+      //           this.props.dispatch(NavigationActions.navigate({routeName: 'Login'}));
+      //         }
+      //       } else {
+      //         if (!inits) {
+      //           reset(this.props.navigation, 'Welcome');
+      //         } else {
+      //           reset(this.props.navigation, 'Login');
+      //           //navigate('Login', { navigation: navigate });
+      //         }
+      //       }
+      //
+      //     }
+      // );
 
+
+      AsyncStorage.getItem("isInit",(error,result) => {
+        console.log("isInit isInit= " + result);
+        if (global.isDva) {
+          if (!result) {
+            // reset(this.props.navigation, 'Welcome');
+            this.props.dispatch(NavigationActions.navigate({routeName: 'Welcome'}));
+            // this.props.dispatch(NavigationActions.init());
+          } else {
+            // const resetAction = NavigationActions.init({
+            //   index: 0,
+            //   actions: [NavigationActions.navigate({routeName: 'Login'})]
+            // });
+            // this.props.dispatch(resetAction);
+            this.props.dispatch(NavigationActions.navigate({routeName: 'Login'}));
           }
-      );
+        } else {
+          if (!inits) {
+            reset(this.props.navigation, 'Welcome');
+          } else {
+            reset(this.props.navigation, 'Login');
+            //navigate('Login', { navigation: navigate });
+          }
+        }
+      })
       //console.log("isInit = " + initd);
-
     }, 2000);
   }
 

@@ -5,7 +5,6 @@
 
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, Platform, TouchableHighlight, TouchableNativeFeedback} from 'react-native';
-//从React15.5起，React.PropTypes被移入到单独的package中
 import { PropTypes} from 'prop-types';
 import px2dp from '../utils/px2dp';
 import theme from '../resourses/theme';

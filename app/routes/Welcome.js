@@ -12,7 +12,7 @@ import {connect} from 'react-redux'
 import Swiper from 'react-native-swiper';
 import {NavigationActions, reset} from "../utils/NavigationUtil";
 import Store from "react-native-simple-store";
-import DeviceStorage from '../utils/DeviceStorage';
+import DeviceStorage from '../utils/devicestorage';
 
 
 const { width, height } = Dimensions.get('window');//获取手机的宽和高
@@ -42,21 +42,12 @@ export default class Welcome extends Component {
     }
 
     _handleBack(){
-        // Store.save('isInit', 1);
-        // Store.get('isInit').then(init => {
-        //     console.log("initS = " + init);
-        // })
-        DeviceStorage.save('isInit', 1);
+        DeviceStorage.save('isInit', 1);//保存已经初始化过
         var initD = DeviceStorage.get('isInit').then((inits) => {
                 console.log("isInit inits= " + inits);
             });
-
-        console.log("Init = " + initD);
-        AsyncStorage.getItem("AAA").then((value) => {
-            console.log(" AsyncStorage GET AAA = " + value);
-        });
         if (global.isDva) {
-            this.props.dispatch(NavigationActions.init({ routeName: 'Login' }));
+            this.props.dispatch(NavigationActions.navigate({ routeName: 'Login' }));
         } else {
             reset(this.props.navigation, 'Login');
         }
