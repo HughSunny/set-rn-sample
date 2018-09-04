@@ -8,7 +8,8 @@ import {
   AsyncStorage
 } from "react-native";
 import {NavigationActions} from '../../utils/NavigationUtil'
-@connect(({app}) => ({...app}))
+import { createAction } from '../../models/index'
+@connect(({login}) => ({...login}))
 export default class DvaLogin extends React.Component {
   constructor(props) {
     super(props);
@@ -17,8 +18,8 @@ export default class DvaLogin extends React.Component {
     this.toLoginIn = this.toLoginIn.bind(this);
 
     this.state = {
-      username: 'admin',
-      password: 'admin'
+      username: '',
+      password: ''
     };
   }
 
@@ -50,7 +51,10 @@ export default class DvaLogin extends React.Component {
     //   actions: [NavigationActions.navigate({routeName: 'Home'})]
     // });
     // this.props.dispatch(resetAction);
-    this.props.dispatch(NavigationActions.navigate({routeName: 'Home'}));
+    this.props.dispatch(createAction('login/login')())
+
+
+    //this.props.dispatch(NavigationActions.navigate({routeName: 'Home'}));
   }
 
 

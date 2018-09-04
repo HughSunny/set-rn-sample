@@ -18,7 +18,7 @@ const maxWidth = Dimensions.get('window').width;
 const splashImg = require('../resourses/imgs/splash.png');
 
 
-@connect()
+@connect(({app}) => ({...app}))
 export default class Splash extends Component {
   static navigationOptions = {
     header: null
@@ -29,6 +29,7 @@ export default class Splash extends Component {
     this.state = {
       bounceValue: new Animated.Value(1)
     };
+    this.navigateNext = this.navigateNext.bind(this);
   }
 
   componentDidMount() {
@@ -41,56 +42,37 @@ export default class Splash extends Component {
     SplashScreen.hide();
     this.timer = setTimeout(() => {
       console.log("get Init start");
-      // var initd = DeviceStorage.get('isInit').then((inits) => {
-      //       console.log("isInit inits= " + inits);
-      //       if (global.isDva) {
-      //         if (!inits) {
-      //           // reset(this.props.navigation, 'Welcome');
-      //           this.props.dispatch(NavigationActions.navigate({routeName: 'Welcome'}));
-      //           // this.props.dispatch(NavigationActions.init());
-      //         } else {
-      //           //reset(this.props.navigation, 'Login');
-      //           this.props.dispatch(NavigationActions.navigate({routeName: 'Login'}));
-      //         }
-      //       } else {
-      //         if (!inits) {
-      //           reset(this.props.navigation, 'Welcome');
-      //         } else {
-      //           reset(this.props.navigation, 'Login');
-      //           //navigate('Login', { navigation: navigate });
-      //         }
-      //       }
-      //
-      //     }
-      // );
+      console.log("get Init props isInit = " + this.props.isInit);
+      if (this.props.isInit == -1) {
+        AsyncStorage.getItem("isInit", (error, result) => {
+          console.log("isInit isInit= " + result);
+          this.navigateNext(result);
+        })
+      } else {
+        this.navigateNext(this.props.isInit)
+      }
+    }, 1000);
+  }
 
-
-      AsyncStorage.getItem("isInit",(error,result) => {
-        console.log("isInit isInit= " + result);
-        if (global.isDva) {
-          if (!result) {
-            // reset(this.props.navigation, 'Welcome');
-            this.props.dispatch(NavigationActions.navigate({routeName: 'Welcome'}));
-            // this.props.dispatch(NavigationActions.init());
-          } else {
-            // const resetAction = NavigationActions.init({
-            //   index: 0,
-            //   actions: [NavigationActions.navigate({routeName: 'Login'})]
-            // });
-            // this.props.dispatch(resetAction);
-            this.props.dispatch(NavigationActions.navigate({routeName: 'Login'}));
-          }
-        } else {
-          if (!inits) {
-            reset(this.props.navigation, 'Welcome');
-          } else {
-            reset(this.props.navigation, 'Login');
-            //navigate('Login', { navigation: navigate });
-          }
-        }
-      })
-      //console.log("isInit = " + initd);
-    }, 2000);
+  navigateNext(isInit) {
+    if (global.isDva) {
+      if (!isInit) {
+        this.props.dispatch(NavigationActions.navigate({routeName: 'Welcome'}));
+      } else {
+        // const resetAction = NavigationActions.init({
+        //   index: 0,
+        //   actions: [NavigationActions.navigate({routeName: 'Login'})]
+        // });
+        // this.props.dispatch(resetAction);
+        this.props.dispatch(NavigationActions.navigate({routeName: 'Login'}));
+      }
+    } else {
+      if (!isInit) {
+        reset(this.props.navigation, 'Welcome');
+      } else {
+        reset(this.props.navigation, 'Login');
+      }
+    }
   }
 
   componentWillUnmount() {

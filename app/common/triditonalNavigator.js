@@ -1,4 +1,4 @@
-import { StackNavigator, TabNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import Splash from '../routes/Splash';
 import Welcome from "../routes/Welcome";
 import Login from "../routes/login/sagaIndex";
@@ -12,7 +12,7 @@ import {
 
 //传统的navigation使用方法
 
-const App = StackNavigator(
+const App = createStackNavigator(
     {
         Splash: {
             screen: Splash,

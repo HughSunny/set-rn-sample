@@ -17,32 +17,33 @@ const actions = [
 //调用 2 this.props.dispatch(
 //     NavigationActions.navigate({ routeName: 'Search' })
 // )
-export default {
-    namespace: 'navigation_router',
-    state: {
-        ...routerReducer(),
-    },
-    reducers: {
-        apply(state, {payload: action}) {
-            return routerReducer(state, action)
-        },
-    },
-    effects: {
-        watch: [
-            function* ({take, call, put}) {
-                while (true) {
-                    const payload = yield take(actions);
 
-                    yield put(createAction('apply')(payload));
-                    //等同于
-                    // put({
-                    //     type: 'apply',
-                    //     payload,
-                    // })
-                    if (payload.type === 'Navigation/NAVIGATE') {
-                        console.log('11111', payload);
-                    }
-                }
-            }, watcher]
-    },
-}
+// export default {
+//     namespace: 'navigation_router',
+//     state: {
+//         ...routerReducer(),
+//     },
+//     reducers: {
+//         apply(state, {payload: action}) {
+//             return routerReducer(state, action)
+//         },
+//     },
+//     effects: {
+//         watch: [
+//             function* ({take, call, put}) {
+//                 while (true) {
+//                     const payload = yield take(actions);
+//
+//                     yield put(createAction('apply')(payload));
+//                     //等同于
+//                     // put({
+//                     //     type: 'apply',
+//                     //     payload,
+//                     // })
+//                     if (payload.type === 'Navigation/NAVIGATE') {
+//                         console.log('11111', payload);
+//                     }
+//                 }
+//             }, watcher]
+//     },
+// }

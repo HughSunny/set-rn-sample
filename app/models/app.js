@@ -1,41 +1,41 @@
-import { createAction, Storage } from '../utils'
-import {NavigationActions} from '../utils/NavigationUtil'
-import * as authService from '../services/auth'
+import {createAction, Storage} from "../utils";
 
 export default {
-  namespace: 'app',
-  state: {
-    login: false,
-    loading: true,
+  namespace:"app",
+
+  state:{
+    isInit:-1,
+    isLogined: false,
+    loading:false,
     fetching: false,
   },
+
   reducers: {
     updateState(state, { payload }) {
+      console.log("APP  updateState");
       return { ...state, ...payload }
     },
   },
+
   effects: {
-    *loadStorage(action, { call, put }) {
-      const login = yield call(Storage.get, 'login', false)
-      yield put(createAction('updateState')({ login, loading: false }))
+    *loadisLogin(action, { call, put }) {
+      const isLogined = yield call(Storage.get, 'login', false);
+      console.log("APP  updateState  isLogined = " + isLogined);
+      yield put(createAction('updateState')({ isLogined, }));//loading: true
     },
-    *login({ payload }, { call, put }) {
-      yield put(createAction('updateState')({ fetching: true }))
-      const login = yield call(authService.login, payload)
-      if (login) {
-        yield put(NavigationActions.back())
-      }
-      yield put(createAction('updateState')({ login, fetching: false }))
-      Storage.set('login', login)
-    },
-    *logout(action, { call, put }) {
-      yield call(Storage.set, 'login', false)
-      yield put(createAction('updateState')({ login: false }))
+    *loadisInit(action, { call, put }) {
+      const isInit = yield call(Storage.get, 'isInit', 0);
+      console.log("APP  updateState  isInit = " + isInit);
+      yield put(createAction('updateState')({isInit}));
     },
   },
-  subscriptions: {
+
+  subscriptions: {//订阅
     setup({ dispatch }) {
-      dispatch({ type: 'loadStorage' })
+      console.log("setup : loadisLogin");
+      dispatch({ type: 'loadisLogin' })
+      console.log("setup : loadisInit");
+      dispatch({ type: 'loadisInit' })
     },
   },
 }

@@ -12,23 +12,20 @@ import {
 } from 'react-native'
 import color from './color'
 import Icon from 'react-native-vector-icons/Ionicons';
+import page1Stack from './Page1Stack'
 import page1 from './homepage1'
 import page2 from './homepage2'
 import page3 from './homepage3'
 
 
-const TabBarComponent = (props) => (<BottomTabBar onPress={onPress} {...props}/>)
 
-const onPress = () => {
-    console.log("BottomTabBar onPress")
-};
-
-const navigationPagesConfig =  {
+const navigationPagesConfig = {
   Page1: {
-    screen: page1,
+    screen: page1Stack,
     navigationOptions: {
+      header:null,
       tabBarLabel: '首页',
-      showLabel: false,
+      showLabel: true,
       tabBarIcon: ({tintColor, focused}) => (
           <Icon
               name={focused ? 'ios-home' : 'ios-home-outline'}
@@ -40,41 +37,25 @@ const navigationPagesConfig =  {
   },
   Page2: {
     screen: page2,
-    navigationOptions: {
-      tabBarLabel: '信息',
-      tabBarIcon: ({tintColor, focused}) => (
-          <Icon
-              name={focused ? 'ios-paper' : 'ios-paper-outline'}
-              size={26}
-              style={{color: tintColor}}
-          />
-      ),
-    }
   },
   Page3: {
     screen: page3,
-    navigationOptions: {
-      tabBarLabel: '我的',
-      tabBarIcon: ({tintColor, focused}) => (
-          <Icon
-              name={focused ? 'ios-person' : 'ios-person-outline'}
-              size={26}
-              style={{color: tintColor}}
-          />
-      ),
-    }
   },
 };
 
-const navigationOptions = {
+const navigationPagesOptions = {
+
   navigationOptions: ({navigation}) => ({
-    tabBarOnPress: () => { // 使用tabBarOnPress点击事件
+    tabBarOnPress:() => { // 使用tabBarOnPress点击事件
       route(navigation);
       //this.props.setTitle(navigation.state.routeName);
-    }
+    },
+    headerLeft:null,
   }),
+
   //tabBarComponent: props => <TabBarComponent {...props}/>,
-  tabBarPosition: 'bottom',//显示位置
+  //tabBarPosition: 'bottom',//显示位置
+
   //对于导航的设置
   tabBarOptions: {
     //android特有下划线的颜色1
@@ -101,6 +82,8 @@ const navigationOptions = {
   animationEnabled: false,
   //进入App的首页面
   initialRouteName: 'Page1',
+  initialRouteParams: {title: 'Page1'}, // 找这条命令不容易, 翻github翻了一个小时\
+
 
   showIcon: true,//是否显示标签图标，默认为false。
 
@@ -109,28 +92,24 @@ const navigationOptions = {
   pressColor: '#ccc',//材质纹波的颜色（仅限Android> = 5.0）--按下的水印
 
   backBehavior: 'none',//按 back 键是否跳转到第一个Tab(首页)， none 为不跳转
-  // tabBarOptions: {
-  //     style: {
-  //         height: 49,
-  //         backgroundColor: 'white'
-  //     },
-  //     showLabel: false,
-  // },
-  initialRouteName: 'Page1', // 设置默认的页面组件
-  initialRouteParams: {title: 'Page1'}, // 找这条命令不容易, 翻github翻了一个小时\
 
 }
 
+const HomeBottomTab = createBottomTabNavigator(navigationPagesConfig, navigationPagesOptions);
 
-const HomeBottomTab = createBottomTabNavigator( navigationPagesConfig, navigationOptions);
-
+//控制标题栏就是路由的名字
 HomeBottomTab.navigationOptions = ({navigation}) => {
-  const {routeName} = navigation.state.routes[navigation.state.index]
+  const {routeName} = navigation.state.routes[navigation.state.index];
   console.log("navigationOptions routeName == " + routeName);
   return {
     headerTitle: routeName,
+    headerTitleStyle:{flex: 1,textAlign: 'center'},
   }
 };
+
+
+export default HomeBottomTab;
+
 
 /**
  * Tab点击跳转调用的公共方法
@@ -146,16 +125,9 @@ const route = (navigation) => {
   }
 };
 
-export default class HomeBottomNav extends Component{
 
-  constructor(props) {
-    super(props);
-  }
+const TabBarComponent = (props) => (<BottomTabBar onPress={onPress} {...props}/>)
 
-  render(){
-    return <HomeBottomTab />
-  }
-
-}
-
-// export default HomeBottomTab;
+const onPress = () => {
+  console.log("BottomTabBar onPress")
+};

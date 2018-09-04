@@ -11,12 +11,28 @@ import px2dp from '../../utils/px2dp';
 import theme from '../../resourses/theme';
 import ScrollableTabView, {ScrollableTabBar, DefaultTabBar} from 'react-native-scrollable-tab-view';
 import {connect} from 'react-redux';
-
+import color from './color'
+import Icon from 'react-native-vector-icons/Ionicons';
 /**
  * Created by Hugh on 2018/8/16
  */
 @connect()
 export default class homepage1 extends Component {
+  // static navigationOptions = ({navigation}) => ({
+  //   tabBarLabel: '首页',
+  //   showLabel: true,
+  //   tabBarIcon: ({tintColor, focused}) => (
+  //       <Icon
+  //           name={focused ? 'ios-home' : 'ios-home-outline'}
+  //           size={26}
+  //           style={{color: tintColor}}
+  //       />
+  //   ),
+  //
+  //   headerTitle:'homepage1',
+  // });
+
+
   constructor(props) {
     super(props);
     this.state = {
@@ -24,10 +40,6 @@ export default class homepage1 extends Component {
       tabNames: ['首页', 'Android', 'iOS']
     };
   }
-
-  static navigationOptions = ({navigation, screenProps}) => ({
-    headerTitle:'homepage3',
-  });
 
 
   render() {
@@ -75,11 +87,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.pageBackgroundColor
   },
-
   top: {
     flex: 1,
   },
+
   scrollTab: {
+    flex: 1,
     marginTop: 40
   },
   scrollTabBar: {

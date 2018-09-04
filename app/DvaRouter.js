@@ -1,6 +1,9 @@
 import React, {PureComponent} from 'react';
 import {
-  BackHandler
+  BackHandler,
+  View,
+  ToastAndroid,
+  Platform
 } from "react-native";
 import {connect} from 'react-redux';
 import Login from "./routes/login/dvaIndex";
@@ -16,8 +19,8 @@ import {
 import Splash from './routes/Splash';
 import Welcome from "./routes/Welcome";
 import {NavigationActions} from "./utils/NavigationUtil";
-import HomePage from "./routes/home/index";
-
+import HomePage from "./routes/home/routes";
+import LoadingSpinner from './components/LoadingSpinner'
 const AppNavigation = createStackNavigator(
     {
       Splash: {
@@ -35,7 +38,9 @@ const AppNavigation = createStackNavigator(
       },
       Home: {
         screen: HomePage,
-
+        navigationOptions: {
+          headerLeft:null
+        }
       },
       LoginSuccess: {screen: LoginSuccess},//登录成功
       // Home: {
@@ -54,7 +59,8 @@ const AppNavigation = createStackNavigator(
         },
         headerTitleStyle: {
           color: '#fff',
-          fontSize: 20
+          fontSize: 20,
+          alignSelf:'center'
         },
         headerTintColor: '#fff'
       }
@@ -84,18 +90,32 @@ function getActiveRouteName(navigationState) {
 @connect(({app, router}) => ({app, router}))
 export default class Router extends PureComponent {
   componentWillMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.backHandle)
+    //if (Platform.OS === 'android')
+      BackHandler.addEventListener('hardwareBackPress', this.backHandle)
   }
 
   componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.backHandle)
+    //if (Platform.OS === 'android')
+      BackHandler.removeEventListener('hardwareBackPress', this.backHandle)
   }
 
   backHandle = () => {
     const currentScreen = getActiveRouteName(this.props.router);
+    console.log( "backHandle Screen == "  + currentScreen);
+
     if (currentScreen === 'Splash' ||currentScreen === 'Welcome' ||currentScreen === 'Login') {
       return false;
-    } else {//(currentScreen !== 'Home')
+    } else if (currentScreen === "Page1" || currentScreen === "Page2" || currentScreen === "Page3"  ){//(currentScreen !== 'Home')
+      if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
+        //最近2秒内按过back键，可以退出应用。
+        BackHandler.exitApp();
+        return false;
+      }
+      this.lastBackPressed = Date.now();
+      ToastAndroid.show('再按一次退出应用', ToastAndroid.SHORT);
+
+      return true;
+    } else {
       this.props.dispatch(NavigationActions.back())
       return true
     }
@@ -106,7 +126,11 @@ export default class Router extends PureComponent {
     const {dispatch, app, router} = this.props;
     //const navigation = addNavigationHelpers({ dispatch, state: router });
     //addNavigationHelpers({ dispatch, state: router })是将会在执行navigation.goBack(),navigation.navigate()的同时执行对应的dispatch，更新router数据。
-    return <App dispatch={dispatch} state={router}/>
+    return <View style={{backgroundColor: 'transparent', flex: 1}}>
+      <App dispatch={dispatch} state={router}/>
+      <LoadingSpinner isVisible={app.loading}/>
+    </View>
+    {/*<App dispatch={dispatch} state={router}/>*/}
   }
 }
 
