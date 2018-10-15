@@ -1,5 +1,5 @@
 import {createAction} from './index'
-import {routerReducer} from '../DvaRouter'
+import {routerReducer} from '../config/routers/root'
 import {NavigationActions} from 'react-navigation'
 
 //2018 0830 新版 dva-starter  废弃

@@ -1,11 +1,12 @@
 import { createStackNavigator } from 'react-navigation';
-import Splash from '../routes/Splash';
-import Welcome from "../routes/Welcome";
-import Login from "../routes/login/sagaIndex";
 
-import HomeBottomTab from '../routes/home/routes'
-import LearnFlex from "../routes/test/LearnFlex";
-import LoginSuccess from "../routes/LoginSuccess";
+import Login from "../pages/login/sagaIndex";
+import Splash from '../pages/Splash';
+import Welcome from "../pages/Welcome";
+import LoginSuccess from "../pages/LoginSuccess";
+import HomeBottomTab from "./routers/home";
+
+import LearnFlex from "../pages/test/LearnFlex";
 import {
     BackHandler
 } from "react-native";

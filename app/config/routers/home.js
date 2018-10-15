@@ -10,12 +10,12 @@ import {
   Dimensions,
   Text
 } from 'react-native'
-import color from './color'
+import color from '../../resourses/color'
 import Icon from 'react-native-vector-icons/Ionicons';
-import page1Stack from './Page1Stack'
-import page1 from './homepage1'
-import page2 from './homepage2'
-import page3 from './homepage3'
+import page1Stack from '../../pages/home/Page1Stack'
+import page1 from '../../pages/home/homepage1'
+import page2 from '../../pages/home/homepage2'
+import page3 from '../../pages/home/homepage3'
 
 
 

@@ -11,7 +11,7 @@ import px2dp from '../../utils/px2dp';
 import theme from '../../resourses/theme';
 import ScrollableTabView, {ScrollableTabBar, DefaultTabBar} from 'react-native-scrollable-tab-view';
 import {connect} from 'react-redux';
-import color from './color'
+import color from '../../resourses/color'
 import Icon from 'react-native-vector-icons/Ionicons';
 /**
  * Created by Hugh on 2018/8/16

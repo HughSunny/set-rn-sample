@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import dva from './utils/dva';
-import Router, { routerMiddleware, routerReducer } from './DvaRouter'
+import Router, { routerMiddleware, routerReducer } from './config/routers/root'
 import appModel from './models/app'
 import loginModel from './models/login'
 const app = dva({

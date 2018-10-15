@@ -8,7 +8,7 @@ import {
   ScrollView,
 } from 'react-native';
 import {connect} from 'react-redux';
-import color from './color'
+import color from '../../resourses/color'
 import Icon from 'react-native-vector-icons/Ionicons';
 /**
  * Created by Hugh on 2018/8/16
