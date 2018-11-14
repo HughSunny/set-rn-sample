@@ -1,6 +1,6 @@
 import {createStackNavigator} from "react-navigation";
-import page1 from './homepage1'
-import page2 from "./homepage2";
+import page1 from './HomePage1'
+import page2 from "./HomePage2";
 
 const Page1Stack = createStackNavigator(
     {

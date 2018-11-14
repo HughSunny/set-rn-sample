@@ -6,11 +6,6 @@ import {
   Platform
 } from "react-native";
 import {connect} from 'react-redux';
-import Login from "../../pages/login/dvaIndex";
-import Splash from '../../pages/Splash';
-import Welcome from "../../pages/Welcome";
-import LoginSuccess from "../../pages/LoginSuccess";
-import HomePage from "./home";
 import {createStackNavigator, TabNavigator, addNavigationHelpers} from 'react-navigation';
 import {
   reduxifyNavigator,
@@ -18,9 +13,15 @@ import {
   createNavigationReducer,
 } from 'react-navigation-redux-helpers'
 
-import {NavigationActions} from "../../utils/NavigationUtil";
+import Login from "../../pages/login/dvaIndex";
+import Splash from '../../pages/Splash';
+import Welcome from "../../pages/Welcome";
+import LoginSuccess from "../../pages/LoginSuccess";
+import HomePage from "./home";
 
+import {NavigationActions} from "../../utils/NavigationUtil";
 import LoadingSpinner from '../../components/LoadingSpinner'
+
 const AppNavigation = createStackNavigator(
     {
       Splash: {

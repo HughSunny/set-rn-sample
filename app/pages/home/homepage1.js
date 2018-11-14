@@ -30,6 +30,7 @@ export default class homepage1 extends Component {
   //   ),
   //
   //   headerTitle:'homepage1',
+  //   headerTitleStyle:{alignSelf:'center'},
   // });
 
 
@@ -40,7 +41,6 @@ export default class homepage1 extends Component {
       tabNames: ['首页', 'Android', 'iOS']
     };
   }
-
 
   render() {
     console.log("title :" + this.state.headerTitle);
