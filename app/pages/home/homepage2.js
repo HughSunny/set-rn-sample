@@ -1,71 +1,71 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
   View,
   Image,
   RefreshControl,
-  ScrollView,
+  ScrollView
 } from 'react-native';
-import {connect} from 'react-redux';
-import color from '../../resourses/color'
+import { connect } from 'react-redux';
+import color from '../../resourses/color';
 import Icon from 'react-native-vector-icons/Ionicons';
 /**
  * Created by Hugh on 2018/8/16
  */
 @connect()
 export default class homepage2 extends Component {
-  static navigationOptions = ({navigation, screenProps}) => ({
+  static navigationOptions = ({ navigation, screenProps }) => ({
     tabBarLabel: '信息',
-    tabBarIcon: ({tintColor, focused}) => (
-        <Icon
-            name={focused ? 'ios-paper' : 'ios-paper-outline'}
-            size={26}
-            style={{color: tintColor}}
-        />
+    tabBarIcon: ({ tintColor, focused }) => (
+      <Icon
+        name={focused ? 'ios-paper' : 'ios-paper-outline'}
+        size={26}
+        style={{ color: tintColor }}
+      />
     ),
-    headerTitle: '信息',
+    headerTitle: '信息'
   });
 
   constructor(props) {
     super(props);
     this.state = {
-      isRefreshing: true,
+      isRefreshing: true
     };
   }
 
   _onRefresh() {
-    this.setState({refreshing: true});
+    this.setState({ refreshing: true });
     this._fetchData();
   }
 
-  _fetchData() {
-
-  }
+  _fetchData() {}
 
   render() {
     return (
-        <View style={styles.container}>
-          <ScrollView
-              refreshControl={
-                <RefreshControl
-                    refreshing={this.state.isRefreshing}
-                    onRefresh={this._onRefresh.bind(this)}
-                    tintColor="#110000"//IOS 指定刷新指示器的颜色
-                    title="Loading..."//IOS string ：指定刷新指示器下显示的文字
-                    titleColor="#001100"//IOS
-                    colors={['#ff0000', '#00ff00', '#0000ff']}
-                    progressBackgroundColor="#ffffFF"/>
-              }>
-            <Text>显示数据</Text>
-          </ScrollView>
-          <Text>homepage2</Text>
-        </View>
+      <View style={styles.container}>
+        <ScrollView
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.isRefreshing}
+              onRefresh={this._onRefresh.bind(this)}
+              tintColor='#110000' //IOS 指定刷新指示器的颜色
+              title='Loading...' //IOS string ：指定刷新指示器下显示的文字
+              titleColor='#001100' //IOS
+              colors={['#ff0000', '#00ff00', '#0000ff']}
+              progressBackgroundColor='#ffffFF'
+            />
+          }
+        >
+          <Text>显示数据</Text>
+        </ScrollView>
+        <Text>homepage2</Text>
+      </View>
     );
   }
 }
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-  },
+    flex: 1
+  }
 });

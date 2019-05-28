@@ -1,23 +1,20 @@
-import React, {Component} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
 import px2dp from '../../utils/px2dp';
 import theme from '../../resourses/theme';
-import ScrollableTabView, {ScrollableTabBar, DefaultTabBar} from 'react-native-scrollable-tab-view';
-import {connect} from 'react-redux';
-import color from '../../resourses/color'
+import ScrollableTabView, {
+  ScrollableTabBar,
+  DefaultTabBar
+} from 'react-native-scrollable-tab-view';
+import { connect } from 'react-redux';
+import color from '../../resourses/color';
 import Icon from 'react-native-vector-icons/Ionicons';
 /**
  * Created by Hugh on 2018/8/16
  */
 @connect()
-export default class homepage1 extends Component {
+export default class HomePage1 extends Component {
   // static navigationOptions = ({navigation}) => ({
   //   tabBarLabel: '首页',
   //   showLabel: true,
@@ -33,7 +30,6 @@ export default class homepage1 extends Component {
   //   headerTitleStyle:{alignSelf:'center'},
   // });
 
-
   constructor(props) {
     super(props);
     this.state = {
@@ -43,42 +39,54 @@ export default class homepage1 extends Component {
   }
 
   render() {
-    console.log("title :" + this.state.headerTitle);
+    console.log('title :' + this.state.headerTitle);
     return (
-        <View style={styles.container}>
-          <Text style={styles.top}>homepage1</Text>
+      <View style={styles.container}>
+        <Text style={styles.top}>homepage1</Text>
 
-          <ScrollableTabView
-              style={styles.scrollTab}
-              renderTabBar={() => <DefaultTabBar style={styles.scrollTabBar}/>}
-              tabBarBackgroundColor="rgb(22,131,251)"
-              tabBarActiveTextColor="white"
-              tabBarInactiveTextColor="rgba(255,255,255,0.5)"
-              tabBarTextStyle={{fontSize: theme.scrollView.fontSize}}
-              tabBarUnderlineStyle={theme.scrollView.underlineStyle}>
-            <Text tabLabel={this.state.tabNames[0]} style={{marginBottom: px2dp(10)}}>currently there are no any
-              messages</Text>
+        <ScrollableTabView
+          style={styles.scrollTab}
+          renderTabBar={() => <DefaultTabBar style={styles.scrollTabBar} />}
+          tabBarBackgroundColor='rgb(22,131,251)'
+          tabBarActiveTextColor='white'
+          tabBarInactiveTextColor='rgba(255,255,255,0.5)'
+          tabBarTextStyle={{ fontSize: theme.scrollView.fontSize }}
+          tabBarUnderlineStyle={theme.scrollView.underlineStyle}
+        >
+          <Text
+            tabLabel={this.state.tabNames[0]}
+            style={{ marginBottom: px2dp(10) }}
+          >
+            currently there are no any messages
+          </Text>
 
-            <View tabLabel={this.state.tabNames[1]} style={styles.content}>
-              <Text style={{marginBottom: px2dp(10)}}>currently there are no any messages</Text>
-              <TouchableOpacity
-                  // onPress={() => {
-                  // }}
-                  activeOpacity={theme.btnActiveOpacity}>
-                <Text style={{color: theme.themeColor}}>登录 / Sign-in</Text>
-              </TouchableOpacity>
-            </View>
+          <View tabLabel={this.state.tabNames[1]} style={styles.content}>
+            <Text style={{ marginBottom: px2dp(10) }}>
+              currently there are no any messages
+            </Text>
+            <TouchableOpacity
+              // onPress={() => {
+              // }}
+              activeOpacity={theme.btnActiveOpacity}
+            >
+              <Text style={{ color: theme.themeColor }}>登录 / Sign-in</Text>
+            </TouchableOpacity>
+          </View>
 
-            <Text tabLabel={this.state.tabNames[2]} style={{marginBottom: px2dp(10)}}>currently there are no any
-              messages,too</Text>
+          <Text
+            tabLabel={this.state.tabNames[2]}
+            style={{ marginBottom: px2dp(10) }}
+          >
+            currently there are no any messages,too
+          </Text>
 
-            {/*{this.state.tabNames.map((item, i) => {*/}
-            {/*return(*/}
-            {/*<HomeTab tabLabel={item} key={i} tabTag={item}/>*/}
-            {/*);})*/}
-            {/*}*/}
-          </ScrollableTabView>
-        </View>
+          {/*{this.state.tabNames.map((item, i) => {*/}
+          {/*return(*/}
+          {/*<HomeTab tabLabel={item} key={i} tabTag={item}/>*/}
+          {/*);})*/}
+          {/*}*/}
+        </ScrollableTabView>
+      </View>
     );
   }
 }
@@ -88,7 +96,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.pageBackgroundColor
   },
   top: {
-    flex: 1,
+    flex: 1
   },
 
   scrollTab: {
