@@ -13,7 +13,7 @@
     "dva-core": "^1.4.0",
     "native-base": "^2.8.0",
     "prop-types": "^15.6.1",
-    "qs": "^6.5.2",
+    "qs": "^6.5.3",
     "react": "^16.4.1",
     "react-native": "^0.55.4",
     "react-native-charts-wrapper": "^0.4.4",
